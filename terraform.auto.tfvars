@@ -1,0 +1,12 @@
+gcp_region = "europe-west1"
+gcp_project = "hc-7e03e38c50ab46c49cfea679ccb"
+node_type = "n1-standard-2"
+gcp_zone = "europe-west1-c"
+gke_cluster = "dcanadillas-test"
+numnodes = 3
+regional_k8s = false
+owner = "dcanadillas"
+config_bucket = ""
+default_gke = true
+default_network = false
+k8s_version="1.22"

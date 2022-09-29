@@ -104,21 +104,3 @@ resource "google_container_node_pool" "primary_nodes" {
   #   max_node_count = var.nodes*2
   # }
 }
-
-resource "google_storage_bucket_object" "kubeconfig" {
-  count = var.config_bucket != "" ? 1 : 0
-  name   = "${var.gke_cluster}-kubeconfig-${formatdate("YYMMDD_HHmm",timestamp())}.yml"
-#   content = nonsensitive(module.gke.kubeconfig)
-  content = templatefile("${path.root}/templates/kubeconfig.yaml", {
-    cluster_name = google_container_cluster.primary.endpoint,
-    endpoint =  google_container_cluster.primary.endpoint,
-    user_name ="admin",
-    cluster_ca = google_container_cluster.primary.master_auth.0.cluster_ca_certificate,
-    client_cert = google_container_cluster.primary.master_auth.0.client_certificate,
-    client_cert_key = google_container_cluster.primary.master_auth.0.client_key,
-    # user_password = google_container_cluster.primary.master_auth.0.password,
-    user_password = "",
-    oauth_token = nonsensitive(data.google_client_config.current.access_token)
-  })
-  bucket = var.config_bucket
-}

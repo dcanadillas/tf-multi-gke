@@ -1,7 +1,7 @@
 gcp_region = "europe-west1"
-gcp_project = "hc-7e03e38c50ab46c49cfea679ccb"
+gcp_project = "hc-baf0c14271ca414b8032fbb969e"
 node_type = "n1-standard-2"
-gcp_zone = "europe-west1-c"
+gcp_zones = ["europe-west1-c","europe-west1-b"]
 gke_cluster = "dcanadillas-test"
 numnodes = 3
 regional_k8s = false
@@ -10,3 +10,4 @@ config_bucket = ""
 default_gke = true
 default_network = false
 k8s_version="1.22"
+numclusters = 2

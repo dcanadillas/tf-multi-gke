@@ -6,32 +6,30 @@
 #   location = google_container_cluster.primary.location
 # }
 
+# locals {
+
+# }
+
 output "kubeconfig" {
-  value = templatefile("${path.root}/templates/kubeconfig.yaml", {
-    cluster_name = google_container_cluster.primary.name,
-    endpoint =  google_container_cluster.primary.endpoint,
-    user_name ="admin",
-    cluster_ca = google_container_cluster.primary.master_auth.0.cluster_ca_certificate,
-    client_cert = google_container_cluster.primary.master_auth.0.client_certificate,
-    client_cert_key = google_container_cluster.primary.master_auth.0.client_key,
-    # user_password = google_container_cluster.primary.master_auth.0.password,
-    user_password = "",
-    oauth_token = nonsensitive(data.google_client_config.current.access_token)
-  })
+  value = module.gke[*].kubeconfig
   sensitive = true
 }
 
 output "ca_certificate" {
-  value = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
+  value = module.gke[*].ca_certificate
 }
 output "cluster_endpoint" {
-  value = google_container_cluster.primary.endpoint
+  value = module.gke[*].cluster_endpoint
   # value = data.google_container_cluster.gke_cluster.endpoint
 }
 output "cluster_name" {
-  depends_on = [
-    google_container_node_pool.primary_nodes,
-  ]
   # value = google_container_cluster.primary.name
-  value = google_container_cluster.primary.name
+  value = module.gke[*].cluster_name
+}
+output "gcp_zone" {
+  value = module.gke[*].gcp_zone
+}
+
+output "gcloud_command" {
+  value = [ for i in range(length(module.gke[*].cluster_name)) : "gcloud container clusters get-credentials ${module.gke[i].cluster_name} --zone ${module.gke[i].gcp_zone}"]
 }

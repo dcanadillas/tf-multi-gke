@@ -8,8 +8,9 @@ variable "node_type" {
   description = "Machine type for nodes"
   default = "n1-standard-2"
 }
-variable "gcp_zone" {
-  description = "availability zones"
+variable "gcp_zones" {
+  description = "List of availability zones"
+  type = list(string)
 }
 variable "gke_cluster" {
   description = "Name of your cluster  "
@@ -44,5 +45,9 @@ variable "config_bucket" {
   description = "Cloud bucket to save config generated files"
   type = string
   default = null
+}
+
+variable "numclusters" {
+  description = "Number of GKE clusters to deploy"
 }
 

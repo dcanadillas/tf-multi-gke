@@ -6,7 +6,7 @@ variable "gcp_project" {
 }
 variable "node_type" {
   description = "Machine type for nodes"
-  default = "n1-standard-2"
+  default = "n2-standard-2"
 }
 variable "gcp_zones" {
   description = "List of availability zones"
@@ -39,7 +39,7 @@ variable "default_network" {
 }
 variable "k8s_version" {
   description = "K8s version to deploy in the format 1.xx"
-  default = "1.21"
+  default = "1.22"
 }
 variable "config_bucket" {
   description = "Cloud bucket to save config generated files"

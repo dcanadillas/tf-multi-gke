@@ -6,7 +6,7 @@ This repository deploys a number of GKE clusters depending on some specific vari
 * `default_gke`: If you want to use the default node pool from GKE deployment (true|false). Defaults to `false`
 * `gcp_project`: Your GCP project to deploy your GKE clusters
 * `gcp_region`: The GCP region to deploy
-* `gcp_zone`: A list with the zones where you want to deploy your clusters. Size of the list needs to be the same as the number of clusters (TODO: improve the code to remove this constraint)
+* `gcp_zone`: A list with the zones where you want to deploy your clusters.
 * `gke_cluster`: Prefix name for your clusters. Then and index number will be added as a suffix (*mycluster-0*, *mycluster-1*, etc...)
 * `k8s_version`: A major Kubernetes version to use. Defaults to `1.22`
 * `node_type`: The VM type to use in GCP for the nodes. Defaults to `n2-standard-2`

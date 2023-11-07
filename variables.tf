@@ -11,13 +11,18 @@ variable "node_type" {
 variable "gcp_zones" {
   description = "List of availability zones"
   type = list(string)
+  validation {
+    condition     = length(var.gcp_zones) > 0
+    error_message = "The GCP zones list cannot be empty."
+  }
+
 }
 variable "gke_cluster" {
   description = "Name of your cluster  "
 }
 variable "numnodes" {
   description = "Number of nodes of the cluster"
-  default=3
+  default = 3
 }
 variable "regional_k8s" {
   description = "Set this to true if you want regional cluster with a master per zone"

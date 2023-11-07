@@ -6,7 +6,7 @@ module "gke" {
   gcp_region = var.gcp_region
   gcp_project = var.gcp_project
   node_type = var.node_type
-  gcp_zone = var.gcp_zones[count.index]
+  gcp_zone = element(var.gcp_zones,count.index)
   gke_cluster = "${var.gke_cluster}-${count.index}"
   numnodes = var.numnodes
   regional_k8s = var.regional_k8s

@@ -5,7 +5,7 @@
 **/.terraform/*
 
 **/.terraform.lock.*
-.terraform.lock.*
+.terraform.lock*
 
 # .tfstate files
 *.tfstate
@@ -18,8 +18,8 @@ crash.log
 # .tfvars files are managed as part of configuration and so should be included in
 # version control.
 #
-*.tfvars
-*.tfvars.tpl
+**/*.tfvars
+**/*.tfvars.tpl
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in

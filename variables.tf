@@ -44,7 +44,7 @@ variable "default_network" {
 }
 variable "k8s_version" {
   description = "K8s version to deploy in the format 1.xx"
-  default = "1.22"
+  default = "1.28"
 }
 variable "config_bucket" {
   description = "Cloud bucket to save config generated files"
